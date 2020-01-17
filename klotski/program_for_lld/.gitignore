@@ -1,0 +1,12 @@
+tmp
+list
+nben
+tools/linker
+tools/prepare
+https
+*.asm
+*.o
+*.head
+*.a
+*.txt
+.idea/

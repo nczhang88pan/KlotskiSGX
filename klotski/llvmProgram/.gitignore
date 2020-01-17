@@ -1,0 +1,4 @@
+build/
+lld/.idea/
+llvm/.idea/
+.vscode/settings.json

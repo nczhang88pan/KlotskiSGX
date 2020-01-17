@@ -1,0 +1,29 @@
+enclave {
+    include "mbedtls/net_v.h"
+    include "mbedtls/timing_v.h"
+
+    trusted {
+        //public void dummy(void);
+    };
+
+    untrusted {
+        // implemented in net_v.h
+        // [in] means going with the call
+        // [out] means getting out from the call
+        int ocall_mbedtls_net_bind( [out] mbedtls_net_context *ctx, [in,string] const char *bind_ip, [in,string] const char *port, int proto );
+        int ocall_mbedtls_net_accept( [in] mbedtls_net_context *bind_ctx, [out] mbedtls_net_context *client_ctx, [out, size=buf_size] void *client_ip, size_t buf_size, [out] size_t *ip_len );
+        int ocall_mbedtls_net_send( [in,out] mbedtls_net_context *ctx, [in, size=len] const unsigned char *buf, size_t len );
+        int ocall_mbedtls_net_recv_timeout( [in,out] mbedtls_net_context *ctx, [out, size=len] unsigned char *buf, size_t len, uint32_t timeout );
+        void ocall_mbedtls_net_free( [in, out] mbedtls_net_context *ctx );
+
+        //FILE *ocall_sgx_fopen([in,string]const char *path,[in] const char *mode);
+        //int ocall_sgx_fclose ([in, out] FILE * stream );
+        //size_t ocall_sgx_fwrite ([in, size=size*count] const void * ptr, size_t size, size_t count,[in, out] FILE * stream );
+        //size_t ocall_sgx_fread ( [out, size=size*count] void * ptr, size_t size, size_t count,[in, out] FILE * stream );
+        //int ocall_sgx_fflush ([in, out] FILE * stream );
+
+
+        // printf
+        //int ocall_print_string([in, string] const char *str);
+    };
+};
